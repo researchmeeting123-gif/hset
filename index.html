@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="site-title">我的個人網站</title>
+  <meta name="description" id="site-desc" content="一個可直接在 GitHub 上手動編輯內容的個人網站。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⭐</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d10; --panel:#0f1318; --text:#e8ecf1; --muted:#9aa4b2;
+      --border:#1b2129; --brand:#7aa2ff; --ring: rgba(122,162,255,.35);
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--text); background: radial-gradient(1200px 1200px at 80% -10%, rgba(122,162,255,.12), transparent 60%), #0b0d10; line-height:1.6}
+    a{color:var(--brand); text-decoration:none}
+    .container{max-width:1080px; margin:0 auto; padding:24px}
+    header{position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.2) blur(8px);
+      background:linear-gradient(to bottom, rgba(11,13,16,.9), rgba(11,13,16,.5)); border-bottom:1px solid var(--border)}
+    .nav{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:10px 0}
+    .brand{font-weight:800; letter-spacing:.3px}
+    .btn{display:inline-block; padding:10px 14px; border:1px solid var(--border); border-radius:10px; color:var(--text);
+      background:linear-gradient(to bottom, #141922, #0d1117); transition:.2s transform, .2s box-shadow, .2s background}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.35), 0 0 0 6px var(--ring)}
+    .card{background:linear-gradient(180deg, rgba(17,22,28,.85), rgba(14,18,23,.85)); border:1px solid var(--border); border-radius:16px; padding:18px}
+    .grid{display:grid; gap:16px}
+    .grid.projects{grid-template-columns:repeat(3,1fr)} .grid.posts{grid-template-columns:repeat(2,1fr)}
+    @media (max-width: 960px){ .grid.projects{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 680px){ .grid.projects,.grid.posts{grid-template-columns:1fr} }
+    h1{font-size:40px; line-height:1.15; margin:8px 0 6px}
+    .muted{color:var(--muted)}
+    .sep{height:1px; background:linear-gradient(90deg, transparent, var(--border), transparent); margin:22px 0}
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .tag{font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid var(--border); color:#cfe3ff; background:rgba(122,162,255,.08)}
+    .pill{padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,.03); font-size:13px; color:#d9e2ec}
+    footer{color:var(--muted); text-align:center; padding:28px 0}
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f7f9fc; --panel:#fff; --text:#0b1220; --muted:#5c6b7a; --border:#e7edf5}
+      body{background:radial-gradient(1200px 1200px at 80% -10%, rgba(122,162,255,.16), transparent 60%), var(--bg)}
+      .card{background:#fff}
+      .btn{background:linear-gradient(to bottom, #fff, #f3f6fb)}
+      .tag{color:#234; background:#eef4ff}
+      .pill{background:#f7fbff}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#" id="nav-title">My Site</a>
+      <div id="nav-links"></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" id="hero">
+      <div class="muted" id="badge"></div>
+      <h1 id="headline">你好！</h1>
+      <p class="muted" id="subhead"></p>
+      <div id="hero-cta" style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px"></div>
+    </section>
+
+    <div class="sep"></div>
+
+    <section id="projects">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+        <h2 style="margin:0">✨ 專案 Projects</h2>
+        <span id="projects-cta" class="pill"></span>
+      </div>
+      <div class="grid projects" id="projects-grid"></div>
+    </section>
+
+    <section id="writing">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+        <h2 style="margin:0">📝 文章 Writing</h2>
+        <span id="writing-cta" class="pill"></span>
+      </div>
+      <div class="grid posts" id="posts-grid"></div>
+    </section>
+
+    <section id="about">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+        <h2 style="margin:0">👋 關於我</h2>
+        <a id="resume-link" class="pill" href="#" target="_blank" rel="noopener">下載簡歷（PDF）</a>
+      </div>
+      <div class="card">
+        <p class="muted" id="about-text"></p>
+        <div class="tags" id="about-tags"></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+        <h2 style="margin:0">📫 聯絡</h2>
+        <span></span>
+      </div>
+      <div class="card">
+        <p id="contact-text"></p>
+        <div class="tags" id="contact-links"></div>
+      </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <footer>
+      <div>© <span id="year"></span> <span id="footer-name"></span> · 以 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 免費託管。</div>
+      <div style="margin-top:6px" id="edit-tip"></div>
+    </footer>
+  </main>
+
+  <script>
+    async function load() {
+      try{
+        const res = await fetch('content.json', {cache:'no-store'});
+        const data = await res.json();
+        render(data);
+      }catch(e){
+        document.body.innerHTML = '<div style="max-width:720px;margin:48px auto;font-family:Inter,system-ui"><h2>找不到 content.json</h2><p>請確認已將 <b>content.json</b> 上傳到同一個資料夾（與 index.html 並列）。</p></div>';
+        console.error(e);
+      }
+    }
+    function el(tag, attrs={}, text){
+      const e = document.createElement(tag);
+      Object.entries(attrs).forEach(([k,v]) => e.setAttribute(k, v));
+      if(text) e.textContent = text;
+      return e;
+    }
+    function render(c){
+      document.title = c.site.title || '我的個人網站';
+      document.getElementById('site-title').textContent = c.site.title || '';
+      document.getElementById('site-desc').setAttribute('content', c.site.description || '');
+      document.getElementById('nav-title').textContent = c.site.navTitle || c.site.title || 'My Site';
+      document.getElementById('footer-name').textContent = c.owner || '';
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const nav = document.getElementById('nav-links');
+      nav.innerHTML = '';
+      (c.nav || []).forEach(n => {
+        const a = el('a', {class:'btn', href:n.href, target: n.href.startsWith('#') ? '' : '_blank', rel:'noopener'}, n.text);
+        nav.appendChild(a);
+      });
+
+      document.getElementById('badge').textContent = c.hero.badge || '';
+      document.getElementById('headline').textContent = c.hero.title || '';
+      document.getElementById('subhead').textContent = c.hero.subtitle || '';
+      const hcta = document.getElementById('hero-cta'); hcta.innerHTML = '';
+      (c.hero.cta || []).forEach(b => {
+        const a = el('a', {class:'btn', href:b.href, target: b.href.startsWith('#') ? '' : '_blank', rel:'noopener'}, b.text);
+        hcta.appendChild(a);
+      });
+
+      document.getElementById('projects-cta').textContent = c.projects.cta || '';
+      const pg = document.getElementById('projects-grid'); pg.innerHTML = '';
+      (c.projects.items || []).forEach(p => {
+        const card = el('div', {class:'card'});
+        const h3 = el('h3', {}, p.title);
+        const d = el('p', {class:'muted'}, p.description || '');
+        card.append(h3,d);
+        const tags = el('div', {class:'tags'});
+        (p.tags || []).forEach(t => tags.appendChild(el('span', {class:'tag'}, t)));
+        card.appendChild(tags);
+        if(p.link){
+          const a = el('a', {href:p.link, class:'btn', style:'margin-top:10px; display:inline-block', target:'_blank', rel:'noopener'}, '查看');
+          card.appendChild(a);
+        }
+        pg.appendChild(card);
+      });
+
+      document.getElementById('writing-cta').textContent = c.posts.cta || '';
+      const wg = document.getElementById('posts-grid'); wg.innerHTML = '';
+      (c.posts.items || []).forEach(p => {
+        const card = el('div', {class:'card'});
+        const meta = el('div', {class:'muted'}, (p.date || '') + (p.tag ? ' · ' + p.tag : ''));
+        const h3 = el('h3', {}, p.title);
+        const d = el('p', {class:'muted'}, p.excerpt || '');
+        card.append(meta, h3, d);
+        if(p.link){
+          const a = el('a', {href:p.link, class:'btn', style:'margin-top:10px; display:inline-block', target:'_blank', rel:'noopener'}, '閱讀');
+          card.appendChild(a);
+        }
+        wg.appendChild(card);
+      });
+
+      document.getElementById('about-text').textContent = c.about.text || '';
+      const at = document.getElementById('about-tags'); at.innerHTML = '';
+      (c.about.tags || []).forEach(t => at.appendChild(el('span', {class:'pill'}, t)));
+      const resume = document.getElementById('resume-link'); 
+      if(c.about.resume){ resume.href = c.about.resume; } else { resume.remove(); }
+
+      document.getElementById('contact-text').innerHTML = c.contact.text || '';
+      const cl = document.getElementById('contact-links'); cl.innerHTML = '';
+      (c.contact.links || []).forEach(x => cl.appendChild(el('a', {class:'pill', href:x.href, target:'_blank', rel:'noopener'}, x.text)));
+
+      const host = location.hostname;
+      if(host.endsWith('.github.io')){
+        const repoHint = (c.repo && c.repo.editUrl) ? c.repo.editUrl : '';
+        const tip = repoHint ? 
+          `👉 <a href="${repoHint}" target="_blank" rel="noopener">在 GitHub 上編輯 content.json</a>（改完直接生效，免重新部署）` :
+          `在 GitHub 上開啟 <b>content.json</b>，點鉛筆即可編輯（存檔即生效）`;
+        document.getElementById('edit-tip').innerHTML = tip;
+      }
+    }
+    load();
+  </script>
+</body>
+</html>
