@@ -1,8 +1,8 @@
 {
   "site": {
-    "title": "KB SIG — 個人網站",
-    "description": "UofT 工程學生、Nebulearn 創辦人。",
-    "navTitle": "KB SIG"
+    "title": "薛智暉— 個人網站",
+    "description": "國立政治大學教育系。",
+    "navTitle": "HSET"
   },
   "owner": "KB SIG",
   "nav": [
@@ -26,8 +26,8 @@
   ],
   "hero": {
     "badge": "Available for collab / research",
-    "title": "UofT 工程 ➜ Nebulearn 創辦人",
-    "subtitle": "AI 原生學習、間隔重複、知識建構、CRT 與 SEL。",
+    "title": "NCCU",
+    "subtitle": "知識翻新。",
     "cta": [
       {
         "text": "看看我的專案",
@@ -43,8 +43,8 @@
     "cta": "歡迎合作 / 顧問",
     "items": [
       {
-        "title": "Nebulearn — AI 原生間隔重複學習",
-        "description": "Leitner / SM2 / FSRS、AI 出題、題庫共享、ELO 排行與學習統計。",
+        "title": "2025",
+        "description": "更新",
         "tags": [
           "React",
           "MongoDB",
@@ -54,8 +54,8 @@
         "link": ""
       },
       {
-        "title": "KB × AI 圖像式日記",
-        "description": "以 KB 與正向心理學為基底的翻轉學習設計。",
+        "title": "KB ",
+        "description": "以KB為基底的翻轉學習設計。",
         "tags": [
           "Positive Psych",
           "Knowledge Building",
@@ -65,7 +65,7 @@
       },
       {
         "title": "Chess Tools in Python",
-        "description": "棋盤組合最佳化與可視化。",
+        "description": "2022。",
         "tags": [
           "Python",
           "Algorithms"
@@ -79,16 +79,16 @@
     "items": [
       {
         "date": "2025-08-13",
-        "tag": "#BuildInPublic",
-        "title": "407 天：從沮喪到產品清晰度",
-        "excerpt": "回到完整學習體驗本質：輸入→學習→回顧→統計→精進。",
+        "tag": "#02",
+        "title": "29393091",
+        "excerpt": "輸入→學習→回顧→統計→精進。",
         "link": ""
       },
       {
         "date": "2025-07-30",
         "tag": "Research",
-        "title": "用 KB 與 SEL 重新設計「課堂參與」",
-        "excerpt": "把 ideas 當學習單位，設計持續改進的社群對話機制。",
+        "title": "用 KB 「課堂參與」",
+        "excerpt": "把 ideas 當學習單位",
         "link": ""
       }
     ]
